@@ -1,3 +1,27 @@
 .bg-first {
     background: #D9D9D9;
 }
+
+.task-options {
+    width: 263px;
+    height: 38px;
+    left: 33px;
+    top: 138px;
+
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 33px;
+}
+
+.task-options:hover {
+    background: rgba(255, 255, 255, 1);
+}
+
+.addtask {
+    font-style: normal;
+    line-height: 22px;
+    background: radial-gradient(100% 100.34% at 0% 47.37%, #F45555 0%, #870404 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
