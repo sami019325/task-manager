@@ -7,11 +7,13 @@ import SideNav from './SideNav';
 
 const MianRouting = () => {
     return (
-        <div>
+        <div className='w-full h-full'>
             <NavBar />
-            <SideNav />
+            <div className='flex gap-5'>
+                <SideNav />
+                <Outlet />
+            </div>
             <BottomNav />
-            <Outlet />
             <Footer />
         </div>
     );

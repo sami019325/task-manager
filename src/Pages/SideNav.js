@@ -14,11 +14,11 @@ const SideNav = () => {
     const [isMouse2, setIsMouse2] = useState(false)
     const [isMouse3, setIsMouse3] = useState(false)
     const [isMouse4, setIsMouse4] = useState(false)
-    const [clickedBtn, setClickedBtn] = useState(0)
+    const [clickedBtn, setClickedBtn] = useState(1)
 
     return (
         <div className='bg-first relative left-0 bottom-0 w-80 p-5 flex flex-col gap-3 h-full'>
-            <Link className='task-options cursor-pointer flex items-center px-5 gap-3' onClick={() => setClickedBtn(1)} onMouseEnter={() => setIsMouse1(true)} onMouseLeave={() => setIsMouse1(false)}>
+            <Link to='/addtask' className='task-options cursor-pointer flex items-center px-5 gap-3' onClick={() => setClickedBtn(1)} onMouseEnter={() => setIsMouse1(true)} onMouseLeave={() => setIsMouse1(false)}>
                 <img className='' src={isMouse1 || clickedBtn === 1 ? editSVG : editNSVG} alt="" srcset="" />
                 <h2 className={`${isMouse1 || clickedBtn === 1 ? 'addtask' : ''} w-full text-left font-bold`}>Add task </h2>
             </Link>
