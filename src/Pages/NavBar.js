@@ -6,9 +6,9 @@ import logo from './../resources/Vector 1.png'
 const NavBar = () => {
     const user = 'sami'
     return (
-        <div className='top-0 left-0 right-0 w-full bg-first flex justify-around items-center p-2'>
+        <div className='top-0 left-0 right-0 w-full bg-first flex justify-between items-center p-2'>
             <img src={logo} alt="" srcset="" />
-            <h1 className='w-60 h-10 bg-white flex justify-around items-center'>Home</h1>
+            {/* <h1 className='w-60 h-10 bg-white flex justify-around items-center'>Home</h1> */}
             <div className='flex justify-around items-center gap-5'>
                 {
                     user.uid ? <img className='w-14 h-14 bg-slate-500 rounded-full' src="" alt="" srcset="" />

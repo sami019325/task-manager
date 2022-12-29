@@ -14,13 +14,13 @@ function App() {
       element: <MianRouting />,
       children: [
         {
-          path: '/addtask',
+          path: '/',
           element: <AddTask />
         }
       ]
     },
   ]); return (
-    <div className="App">
+    <div >
       <RouterProvider router={router} />
     </div>
   );
