@@ -1,25 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './AddTask.css'
 import alignLeft from './../../resources/u_align-left.svg'
 import aligncenter from './../../resources/u_align-center.svg'
 import alignright from './../../resources/u_align-right.svg'
 import insertImg from './../../resources/u_image-plus.png'
 
-const AddTask = () => {
+const AddTask = ({ onFileSelect }) => {
     const [IsColor, setIsColor] = useState('bg-black')
-    const [IsJustify, setIsJustify] = useState('bg-black')
+    const [IsJustify, setIsJustify] = useState('text-left')
     const [IsBold, setIsBold] = useState(false)
     const [IsItalic, setIsItalic] = useState(false)
+    const [ImageURL, setImageURL] = useState('')
+    // const [TextJustify, setTextJustify] = useState('text-')
     let sami = `<h1 style='color:red'>sami Ahmed</h1>`
     const [text, setText] = useState(` `)
-    // const addValue = (value) => {
-    //     // document.getElementById("textArea").innerHTML = 'html';
-    // }
-    // addValue()
-    // function createMarkup() {
-    //     const words = <h1 className='px-5 py-2 font-bold text-2xl w-11/12'>sami Ahmed</h1>;
-    //     return words
-    // }
+
     const createBold = (p) => {
         const words = document.getElementById('textArea').innerHTML;
         let ddd;
@@ -83,20 +78,69 @@ const AddTask = () => {
     }
     const renderText = () => {
         const words = document.getElementById('textArea').innerHTML
-        console.log(words)
+        console.log('============================', words)
+        // setText(words)
+    }
+
+    const callImg = (url) => {
+        const words = document.getElementById('textArea').innerHTML;
+        let ddd = words + `<img src="${url}" alt="Girl in a jacket" width="500" width="100%">`
+        console.log(ddd)
+        setText(ddd)
+    }
+
+    const [file, setFile] = useState();
+    function handleChange(e) {
+        const image = e.target.files[0]
+        console.log(e.target.files[0]);
+        const formData = new FormData()
+        formData.append('image', image)
+        const url = `https://api.imgbb.com/1/upload?&key=bcef80113996f29c85cf7b9516568d38`
+        // setFile(URL.createObjectURL(e.target.files[0]));
+        fetch(url, {
+            method: 'POST',
+            body: formData
+        })
+            .then(res => res.json())
+            .then(data => setImageURL(data.data.url) + callImg(data.data.url))
+            .catch(err => console.error(err))
+    }
+
+
+
+    /// add task functions === ==================================
+    const addTask = (event) => {
+        event.preventDefault();
+        const titleText = event.target.titleText.value;
+        const detailText = document.getElementById('textArea').innerHTML;
+        const textJustify = IsJustify
+        const data = { textJustify, titleText, detailText }
+
+        console.log(data)
+
+        fetch('http://localhost:5000/insert', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body: JSON.stringify(data)
+        })
+            .then(res => res.json())
+            .then(data => console.log(data))
+            .catch(err => console.error(err))
     }
 
     return (
-        <div className='bg-lime-50 w-full flex flex-col items-center'>
+        <div className=' w-full flex flex-col items-center m-5'>
             <div className='w-11/12 rounded-lg bg-first p-3 m-3 flex flex-wrap justify-center items-center gap-3 select-none'>
                 <div className='bg-of-box flex'>
                     <button className={`font-bold box ${IsBold ? 'box-active ' : ''}`} onClick={() => setIsBold(!IsBold) + createBold(IsBold)}>B</button>
                     <button className={`italic box ${IsItalic ? 'box-active ' : ''}`} onClick={() => setIsItalic(!IsItalic) + createItalic(IsItalic)}>i</button>
                 </div>
                 <div className='bg-of-box flex'>
-                    <button onClick={() => setIsJustify('justify-start')} className={`font-bold box ${IsJustify === 'justify-start' ? 'box-active' : ''}`}><img src={alignLeft} alt="" srcset="" /></button>
-                    <button onClick={() => setIsJustify('justify-center')} className={`font-bold box ${IsJustify === 'justify-center' ? 'box-active' : ''}`}><img src={aligncenter} alt="" srcset="" /></button>
-                    <button onClick={() => setIsJustify('justify-end')} className={`font-bold box ${IsJustify === 'justify-end' ? 'box-active' : ''}`}><img src={alignright} alt="" srcset="" /></button>
+                    <button onClick={() => setIsJustify('text-left')} className={`font-bold box ${IsJustify === 'text-left' ? 'box-active' : ''}`}><img src={alignLeft} alt="" srcset="" /></button>
+                    <button onClick={() => setIsJustify('text-center')} className={`font-bold box ${IsJustify === 'text-center' ? 'box-active' : ''}`}><img src={aligncenter} alt="" srcset="" /></button>
+                    <button onClick={() => setIsJustify('text-right')} className={`font-bold box ${IsJustify === 'text-right' ? 'box-active' : ''}`}><img src={alignright} alt="" srcset="" /></button>
                 </div>
                 <div className='bg-of-box flex'>
                     <button onClick={() => setIsColor('bg-black') + createColor(IsColor)} className='colored-box bg-black'>
@@ -120,19 +164,20 @@ const AddTask = () => {
                         <option value="24">24</option>
                     </select>
                 </div>
-                <div className='bg-of-box flex'>
-                    <img className='font-bold box' src={insertImg} alt="" srcset="" />
-                    <input type='file' accept='image/png, image/jpg, image/gif, image/jpeg' className='hidden' />
+
+                <div className="App">
+                    <input type="file" onChange={handleChange} />
+                    {/* <img src={insertImg} /> */}
 
                 </div>
-
 
             </div>
-            <form className='bg-stone-300 w-11/12 p-3 rounded-lg flex flex-col items-center'>
-                <input className='px-5 py-2 font-bold text-2xl w-11/12' max='10' placeholder='Write title ' type="text" />
-                <div id='textArea' className={`px-5 py-2 w-11/12 mt-2 pb-52 bg-white ${IsJustify === 'justify-start' ? 'text-left' : ''} ${IsJustify === 'justify-center' ? 'text-center' : ''} ${IsJustify === 'justify-end' ? 'text-right' : ''}`} contentEditable={true} dangerouslySetInnerHTML={{ __html: text }} onKeyUp={() => renderText()}>
+            <form onSubmit={addTask} className='bg-stone-300 w-11/12 p-3 rounded-lg flex flex-col items-center'>
+                <input id='titleText' className='px-5 py-2 font-bold text-2xl w-11/12' max='10' placeholder='Write title ' type="text" />
+                <div id='textArea' name='textArea' className={`px-5 py-2 w-11/12 mt-2 pb-52 bg-white ${IsJustify === 'text-left' ? 'text-left' : ''} ${IsJustify === 'text-center' ? 'text-center' : ''} ${IsJustify === 'text-right' ? 'text-right' : ''}`} contentEditable={true} dangerouslySetInnerHTML={{ __html: text }} onKeyUp={() => renderText()}>
                     {/* /append child/ */}
                 </div>
+                <button className='bg-blue-900 hover:bg-sky-900  text-center text-white font-bold py-3 m-2 px-10 rounded-3xl'>Add</button>
             </form>
         </div>
     );
