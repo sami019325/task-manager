@@ -25,7 +25,7 @@ const BottomNav = () => {
             <Link to='/showtask' className='task-options cursor-pointer flex justify-center items-center px-5 gap-3' onClick={() => setClickedBtn(2)} onMouseEnter={() => setIsMouse2(true)} onMouseLeave={() => setIsMouse2(false)}>
                 <img src={isMouse2 || clickedBtn === 2 ? myTaskSVG : myTaskNSVG} alt="" srcset="" />
             </Link>
-            <Link className='task-options cursor-pointer flex justify-center items-center px-5 gap-3' onClick={() => setClickedBtn(3)} onMouseEnter={() => setIsMouse3(true)} onMouseLeave={() => setIsMouse3(false)}>
+            <Link to='/completed' className='task-options cursor-pointer flex justify-center items-center px-5 gap-3' onClick={() => setClickedBtn(3)} onMouseEnter={() => setIsMouse3(true)} onMouseLeave={() => setIsMouse3(false)}>
                 <img src={isMouse3 || clickedBtn === 3 ? CompletedkSVG : CompletedkNSVG} alt="" srcset="" />
             </Link>
             <Link to='/details' className='task-options cursor-pointer flex justify-center items-center px-5 gap-3' onClick={() => setClickedBtn(4)} onMouseEnter={() => setIsMouse4(true)} onMouseLeave={() => setIsMouse4(false)}>

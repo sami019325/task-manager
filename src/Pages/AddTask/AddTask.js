@@ -107,13 +107,13 @@ const AddTask = ({ onFileSelect }) => {
             .catch(err => console.error(err))
     }
 
-    console.log('user  1---', user.email)
+    // console.log('user  1---', user.email)
 
 
     /// add task functions === ==================================
     const addTask = (event) => {
         event.preventDefault();
-        console.log('user  ---', user.email)
+        // console.log('user  ---', user.email)
         const titleText = event.target.titleText.value;
         const email = user.email
         const detailText = document.getElementById('textArea').innerHTML;

@@ -26,7 +26,7 @@ const SideNav = () => {
                 <img src={isMouse2 || clickedBtn === 2 ? myTaskSVG : myTaskNSVG} alt="" srcset="" />
                 <h2 className={`${isMouse2 || clickedBtn === 2 ? 'addtask' : ''} w-full text-left font-bold `}>My Task </h2>
             </Link>
-            <Link className='task-options cursor-pointer flex items-center px-5 gap-3' onClick={() => setClickedBtn(3)} onMouseEnter={() => setIsMouse3(true)} onMouseLeave={() => setIsMouse3(false)}>
+            <Link to='/completed' className='task-options cursor-pointer flex items-center px-5 gap-3' onClick={() => setClickedBtn(3)} onMouseEnter={() => setIsMouse3(true)} onMouseLeave={() => setIsMouse3(false)}>
                 <img src={isMouse3 || clickedBtn === 3 ? CompletedkSVG : CompletedkNSVG} alt="" srcset="" />
                 <h2 className={`${isMouse3 || clickedBtn === 3 ? 'addtask' : ''} w-full text-left font-bold `}>Completed task </h2>
             </Link>
