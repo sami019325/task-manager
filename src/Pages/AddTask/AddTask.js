@@ -1,9 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useContext } from 'react';
 import './AddTask.css'
 import alignLeft from './../../resources/u_align-left.svg'
 import aligncenter from './../../resources/u_align-center.svg'
 import alignright from './../../resources/u_align-right.svg'
 import insertImg from './../../resources/u_image-plus.png'
+import { ContextData } from '../SharedRoute';
 
 const AddTask = ({ onFileSelect }) => {
     const [IsColor, setIsColor] = useState('bg-black')
@@ -12,9 +13,9 @@ const AddTask = ({ onFileSelect }) => {
     const [IsItalic, setIsItalic] = useState(false)
     const [ImageURL, setImageURL] = useState('')
     // const [TextJustify, setTextJustify] = useState('text-')
-    let sami = `<h1 style='color:red'>sami Ahmed</h1>`
+    // let sami = `<h1 style='color:red'>sami Ahmed</h1>`
     const [text, setText] = useState(` `)
-
+    const { user } = useContext(ContextData)
     const createBold = (p) => {
         const words = document.getElementById('textArea').innerHTML;
         let ddd;
@@ -106,19 +107,25 @@ const AddTask = ({ onFileSelect }) => {
             .catch(err => console.error(err))
     }
 
+    console.log('user  1---', user.email)
 
 
     /// add task functions === ==================================
     const addTask = (event) => {
         event.preventDefault();
+        console.log('user  ---', user.email)
         const titleText = event.target.titleText.value;
+        const email = user.email
         const detailText = document.getElementById('textArea').innerHTML;
         const textJustify = IsJustify
-        const data = { textJustify, titleText, detailText }
+        const IsActive = true
+        const data = { email, textJustify, titleText, detailText, IsActive }
 
+
+        // const device ==============================
         console.log(data)
 
-        fetch('http://localhost:5000/insert', {
+        fetch('https://taskbox-delta.vercel.app/insert', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

@@ -22,7 +22,7 @@ const SideNav = () => {
                 <img className='' src={isMouse1 || clickedBtn === 1 ? editSVG : editNSVG} alt="" srcset="" />
                 <h2 className={`${isMouse1 || clickedBtn === 1 ? 'addtask' : ''} w-full text-left font-bold`}>Add task </h2>
             </Link>
-            <Link className='task-options cursor-pointer flex items-center px-5 gap-3' onClick={() => setClickedBtn(2)} onMouseEnter={() => setIsMouse2(true)} onMouseLeave={() => setIsMouse2(false)}>
+            <Link to='/showtask' className='task-options cursor-pointer flex items-center px-5 gap-3' onClick={() => setClickedBtn(2)} onMouseEnter={() => setIsMouse2(true)} onMouseLeave={() => setIsMouse2(false)}>
                 <img src={isMouse2 || clickedBtn === 2 ? myTaskSVG : myTaskNSVG} alt="" srcset="" />
                 <h2 className={`${isMouse2 || clickedBtn === 2 ? 'addtask' : ''} w-full text-left font-bold `}>My Task </h2>
             </Link>
@@ -30,7 +30,7 @@ const SideNav = () => {
                 <img src={isMouse3 || clickedBtn === 3 ? CompletedkSVG : CompletedkNSVG} alt="" srcset="" />
                 <h2 className={`${isMouse3 || clickedBtn === 3 ? 'addtask' : ''} w-full text-left font-bold `}>Completed task </h2>
             </Link>
-            <Link className='task-options cursor-pointer flex items-center px-5 gap-3' onClick={() => setClickedBtn(4)} onMouseEnter={() => setIsMouse4(true)} onMouseLeave={() => setIsMouse4(false)}>
+            <Link to='/details' className='task-options cursor-pointer flex items-center px-5 gap-3' onClick={() => setClickedBtn(4)} onMouseEnter={() => setIsMouse4(true)} onMouseLeave={() => setIsMouse4(false)}>
                 <img src={isMouse4 || clickedBtn === 4 ? DetailSVG : DetailNSVG} alt="" srcset="" />
                 <h2 className={`${isMouse4 || clickedBtn === 4 ? 'addtask' : ''} w-full text-left font-bold`}>Details </h2>
             </Link>

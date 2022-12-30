@@ -18,17 +18,17 @@ const BottomNav = () => {
     const [clickedBtn, setClickedBtn] = useState(1)
 
     return (
-        <div className='flex lg:hidden bg-first relative left-0 bottom-0 mt-2 right-0 w-12/12 p-5 gap-3 h-12/12'>
-            <Link to='/' className='task-options cursor-pointer flex items-center px-5 gap-3' onClick={() => setClickedBtn(1)} onMouseEnter={() => setIsMouse1(true)} onMouseLeave={() => setIsMouse1(false)}>
+        <div className='flex lg:hidden bg-first left-0 bottom-0 mt-2 right-0 fixed w-12/12 p-5 gap-3 h-12/12'>
+            <Link to='/' className='task-options cursor-pointer flex justify-center items-center px-5 gap-3' onClick={() => setClickedBtn(1)} onMouseEnter={() => setIsMouse1(true)} onMouseLeave={() => setIsMouse1(false)}>
                 <img className='' src={isMouse1 || clickedBtn === 1 ? editSVG : editNSVG} alt="" srcset="" />
             </Link>
-            <Link className='task-options cursor-pointer flex items-center px-5 gap-3' onClick={() => setClickedBtn(2)} onMouseEnter={() => setIsMouse2(true)} onMouseLeave={() => setIsMouse2(false)}>
+            <Link to='/showtask' className='task-options cursor-pointer flex justify-center items-center px-5 gap-3' onClick={() => setClickedBtn(2)} onMouseEnter={() => setIsMouse2(true)} onMouseLeave={() => setIsMouse2(false)}>
                 <img src={isMouse2 || clickedBtn === 2 ? myTaskSVG : myTaskNSVG} alt="" srcset="" />
             </Link>
-            <Link className='task-options cursor-pointer flex items-center px-5 gap-3' onClick={() => setClickedBtn(3)} onMouseEnter={() => setIsMouse3(true)} onMouseLeave={() => setIsMouse3(false)}>
+            <Link className='task-options cursor-pointer flex justify-center items-center px-5 gap-3' onClick={() => setClickedBtn(3)} onMouseEnter={() => setIsMouse3(true)} onMouseLeave={() => setIsMouse3(false)}>
                 <img src={isMouse3 || clickedBtn === 3 ? CompletedkSVG : CompletedkNSVG} alt="" srcset="" />
             </Link>
-            <Link className='task-options cursor-pointer flex items-center px-5 gap-3' onClick={() => setClickedBtn(4)} onMouseEnter={() => setIsMouse4(true)} onMouseLeave={() => setIsMouse4(false)}>
+            <Link to='/details' className='task-options cursor-pointer flex justify-center items-center px-5 gap-3' onClick={() => setClickedBtn(4)} onMouseEnter={() => setIsMouse4(true)} onMouseLeave={() => setIsMouse4(false)}>
                 <img src={isMouse4 || clickedBtn === 4 ? DetailSVG : DetailNSVG} alt="" srcset="" />
             </Link>
 

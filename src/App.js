@@ -6,6 +6,10 @@ import {
 } from "react-router-dom";
 import MianRouting from './Pages/MianRouting';
 import AddTask from './Pages/AddTask/AddTask';
+import LogIn from './Pages/LogIn';
+import ShowTask from './Pages/ShowTask/ShowTask';
+import PrivateRoute from './Pages/PrivateRoute';
+import Details from './Pages/Details';
 
 function App() {
   const router = createBrowserRouter([
@@ -15,8 +19,20 @@ function App() {
       children: [
         {
           path: '/',
-          element: <AddTask />
-        }
+          element: <PrivateRoute><AddTask /></PrivateRoute>
+        },
+        {
+          path: '/login',
+          element: <LogIn />
+        },
+        {
+          path: '/showtask',
+          element: <PrivateRoute><ShowTask /></PrivateRoute>
+        },
+        {
+          path: '/details',
+          element: <PrivateRoute><Details /></PrivateRoute>
+        },
       ]
     },
   ]); return (
